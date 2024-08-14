@@ -338,12 +338,12 @@ module Spreedly
       end.join
     end
 
-    def xml_for_array(key, array)
+    def xml_for_array(array)
       array.map do |value|
         if value.kind_of?(Hash)
-          "<#{key.singularize}>#{xml_for_hash(value)}</#{key.singularize}>"
+          xml_for_hash(value)
         else
-          "<#{key.singularize}>#{value}</#{key.singularize}>"
+          value.to_s
         end
       end.join
     end
