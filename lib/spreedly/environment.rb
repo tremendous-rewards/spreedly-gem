@@ -329,7 +329,7 @@ module Spreedly
       hash.map do |key, value|
         if value.kind_of?(Hash)
           text = xml_for_hash(value)
-        elsif value.kind_of?(Array)
+        elsif value.kind_of?(Array) && key == :line_items
           text = xml_for_array(value)
         else
           text = value
