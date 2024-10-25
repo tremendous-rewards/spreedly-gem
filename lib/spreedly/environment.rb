@@ -338,7 +338,7 @@ module Spreedly
         end
 
         if is_line_items_array
-          "<#{key} type='array'>#{text}</#{key}>"
+          "<#{key} type='array'><line_item>#{text}</line_item></#{key}>"
         else
           "<#{key}>#{text}</#{key}>"
         end
