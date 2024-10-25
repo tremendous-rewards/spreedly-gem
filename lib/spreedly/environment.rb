@@ -327,14 +327,21 @@ module Spreedly
 
     def xml_for_hash(hash)
       hash.map do |key, value|
+        is_line_items_array = value.kind_of?(Array) && key == :line_items
+
         if value.kind_of?(Hash)
           text = xml_for_hash(value)
-        elsif value.kind_of?(Array) && key == :line_items
+        elsif is_line_items_array
           text = xml_for_array(value)
         else
           text = value
         end
-        "<#{key}>#{text}</#{key}>"
+
+        if is_line_items_array
+          "<#{key} type=\"array\">#{text}</#{key}>"
+        else
+          "<#{key}>#{text}</#{key}>"
+        end
       end.join
     end
 
